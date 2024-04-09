@@ -1,7 +1,5 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { Octokit } from '@octokit/core';
 import RepoTable from './RepoTable';
 // import { Column, Grid } from '@carbon/react';
 import {
@@ -11,6 +9,9 @@ import {
   Grid,
   Column,
 } from '@carbon/react';
+
+import React, { useEffect, useState } from 'react';
+import { Octokit } from '@octokit/core';
 
 const octokitClient = new Octokit({});
 
@@ -41,35 +42,35 @@ const headers = [
   },
 ];
 
-const rows = [
-  {
-    id: '1',
-    name: 'Repo 1',
-    createdAt: 'Date',
-    updatedAt: 'Date',
-    issueCount: '123',
-    stars: '456',
-    links: 'Links',
-  },
-  {
-    id: '2',
-    name: 'Repo 2',
-    createdAt: 'Date',
-    updatedAt: 'Date',
-    issueCount: '123',
-    stars: '456',
-    links: 'Links',
-  },
-  {
-    id: '3',
-    name: 'Repo 3',
-    createdAt: 'Date',
-    updatedAt: 'Date',
-    issueCount: '123',
-    stars: '456',
-    links: 'Links',
-  },
-];
+// const rows = [
+//   {
+//     id: '1',
+//     name: 'Repo 1',
+//     createdAt: 'Date',
+//     updatedAt: 'Date',
+//     issueCount: '123',
+//     stars: '456',
+//     links: 'Links',
+//   },
+//   {
+//     id: '2',
+//     name: 'Repo 2',
+//     createdAt: 'Date',
+//     updatedAt: 'Date',
+//     issueCount: '123',
+//     stars: '456',
+//     links: 'Links',
+//   },
+//   {
+//     id: '3',
+//     name: 'Repo 3',
+//     createdAt: 'Date',
+//     updatedAt: 'Date',
+//     issueCount: '123',
+//     stars: '456',
+//     links: 'Links',
+//   },
+// ];
 
 const LinkList = ({ url, homepageUrl }) => (
   <ul style={{ display: 'flex' }}>
@@ -96,15 +97,14 @@ const getRowItems = (rows) =>
     links: <LinkList url={row.html_url} homepageUrl={row.homepage} />,
   }));
 
-const getRowDescription = (rowId) => {
-  const row = rows.find(({ id }) => id === rowId);
-  return row ? row.description : '';
-};
+// const getRowDescription = (rowId) => {
+//   const row = rows.find(({ id }) => id === rowId);
+//   return row ? row.description : '';
+// };
 
 function RepoPage() {
   const [firstRowIndex, setFirstRowIndex] = useState(0);
   const [currentPageSize, setCurrentPageSize] = useState(10);
-
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
   const [rows, setRows] = useState([]);
